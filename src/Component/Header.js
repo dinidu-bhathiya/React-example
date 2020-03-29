@@ -1,12 +1,24 @@
 import React from 'react';
+import {connect} from 'react-redux';
 
-const Header = () => {
-  const resultCount = 20;
+const Header = ({todoListCount, userName}) => {
+ 
+
   return(
     <div className="app-header">
-      Result Count {resultCount} 
+      User Name: {userName}
+      <div>search: <input /></div>
+      Todo Count {todoListCount} 
+      
     </div>
   )
 }
 
-export default Header;
+const mapStateToProps = (state) => {
+  return {
+    todoListCount: state.todo.todoList.length,
+    userName: state.user.userName
+  }
+}
+
+export default connect(mapStateToProps)(Header);
